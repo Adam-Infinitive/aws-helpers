@@ -1,3 +1,7 @@
+# after setting credentials using this script you must run aws cli commands with the '--profile session' tag
+# ex: 
+# aws s3 cp filename.parquet s3://my-s3-bucket --profile session
+
 echo "current credentials:"
 cat ~/.aws/credentials
 MFA_DEVICE_ARN=$(aws iam list-virtual-mfa-devices --profile default | jq -r '.[] | .[] | .SerialNumber' | grep 'firstname.lastname') # replace firstname.lastname
