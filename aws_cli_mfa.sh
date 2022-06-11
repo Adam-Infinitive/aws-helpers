@@ -1,6 +1,6 @@
 echo "current credentials:"
 cat ~/.aws/credentials
-MFA_DEVICE_ARN=$(aws iam list-virtual-mfa-devices --profile default | jq -r '.[] | .[] | .SerialNumber' | grep 'adam.siwiec')
+MFA_DEVICE_ARN=$(aws iam list-virtual-mfa-devices --profile default | jq -r '.[] | .[] | .SerialNumber' | grep 'firstname.lastname')
 if [ -z "$MFA_DEVICE_ARN" ]
 then
   echo "error pulling device arn.. exiting.."
