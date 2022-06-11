@@ -1,6 +1,6 @@
 echo "current credentials:"
 cat ~/.aws/credentials
-MFA_DEVICE_ARN=$(aws iam list-virtual-mfa-devices --profile default | jq -r '.[] | .[] | .SerialNumber' | grep 'firstname.lastname')
+MFA_DEVICE_ARN=$(aws iam list-virtual-mfa-devices --profile default | jq -r '.[] | .[] | .SerialNumber' | grep 'firstname.lastname') # replace firstname.lastname
 if [ -z "$MFA_DEVICE_ARN" ]
 then
   echo "error pulling device arn.. exiting.."
@@ -17,6 +17,7 @@ aws configure set aws_access_key_id $AWS_ACCESS_KEY --profile session
 aws configure set aws_secret_access_key $AWS_SECRET --profile session
 aws configure set aws_session_token $AWS_SESSION_TOKEN --profile session
 aws configure set token_expiration $TOKEN_EXPIRATION --profile session
+echo "new credentials:"
 cat ~/.aws/credentials
 rm temp.json
 fi
